@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Adarsh | Tech Explorer</title>
+
+  <meta
+    name="description"
+    content="Adarsh's personal portfolio — a first-year student exploring technology, coding and building projects."
+  />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #080b12;
+      --card: #10141e;
+      --card-hover: #151a26;
+      --text: #f5f7ff;
+      --muted: #9ba3b7;
+      --primary: #7c5cff;
+      --secondary: #00d4ff;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Background glow */
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: #6246ea;
+      filter: blur(180px);
+      opacity: 0.15;
+      top: -200px;
+      left: -150px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: #00bfff;
+      filter: blur(180px);
+      opacity: 0.08;
+      bottom: -150px;
+      right: -100px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Navbar */
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 8%;
+      background: rgba(8, 11, 18, 0.75);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* Hero */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 8% 80px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid rgba(124, 92, 255, 0.35);
+      background: rgba(124, 92, 255, 0.08);
+      color: #b9adff;
+      border-radius: 50px;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(50px, 8vw, 90px);
+      line-height: 1;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 22px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(124, 92, 255, 0.25);
+    }
+
+    .btn-secondary:hover {
+      background: var(--card);
+      transform: translateY(-3px);
+    }
+
+    /* Sections */
+
+    section {
+      padding: 100px 8%;
+    }
+
+    .section-title {
+      margin-bottom: 50px;
+    }
+
+    .section-title span {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      margin-top: 8px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 600px;
+      margin-top: 10px;
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .info-card {
+      padding: 30px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-row span:first-child {
+      color: var(--muted);
+    }
+
+    .info-row span:last-child {
+      font-weight: 600;
+    }
+
+    /* Skills */
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-card {
+      padding: 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: 0.3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      background: var(--card-hover);
+      border-color: rgba(124, 92, 255, 0.35);
+    }
+
+    .skill-icon {
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .skill-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Projects */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    .project-number {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .project h3 {
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 5px 9px;
+      border-radius: 6px;
+      background: rgba(124, 92, 255, 0.1);
+      color: #b9adff;
+    }
+
+    /* Journey */
+
+    .journey {
+      max-width: 750px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 40px 35px;
+      border-left: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child {
+      border-left: none;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 4px;
+      width: 9px;
+      height: 9px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--primary);
+    }
+
+    .timeline-item small {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .timeline-item h3 {
+      margin: 5px 0;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Contact */
+
+    .contact-box {
+      padding: 60px;
+      text-align: center;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(124, 92, 255, 0.15),
+          transparent 60%
+        ),
+        var(--card);
+    }
+
+    .contact-box h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 30px 8%;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Scroll animation */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile */
+
+    @media (max-width: 800px) {
+      nav {
+        padding: 0 5%;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 120px 6% 70px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+        letter-spacing: -3px;
+      }
+
+      section {
+        padding: 75px 6%;
+      }
+
+      .about-grid,
+      .skills,
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+
+      .contact-box {
+        padding: 40px 20px;
+      }
+
+      .contact-box h2 {
+        font-size: 30px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <a href="#home" class="logo">A<span>.</span></a>
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Exploring</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="hero-content reveal">
+
+        <div class="badge">
+          ✦ First Year Student · Tech Explorer
+        </div>
+
+        <h1>
+          Hi, I'm <span class="gradient-text">Adarsh.</span>
+        </h1>
+
+        <p>
+          I'm a first-year college student who's just getting started
+          with technology. I'm curious, learning every day, and exploring
+          the world of coding, software, AI and the web.
+        </p>
+
+        <div class="buttons">
+          <a href="#projects" class="btn btn-primary">
+            Explore My Journey →
+          </a>
+
+          <a href="#contact" class="btn btn-secondary">
+            Let's Connect
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+      <div class="section-title reveal">
+        <span>01 — About Me</span>
+        <h2>Still learning. Always curious.</h2>
+        <p>
+          I believe college is the beginning of a journey, not the
+          destination.
+        </p>
+      </div>
+
+      <div class="about-grid">
+
+        <div class="about-text reveal">
+          <p>
+            Hey! I'm Adarsh, a first-year student who recently started
+            college and is beginning my journey into technology.
+          </p>
+
+          <p>
+            Right now, I'm exploring different areas of tech to discover
+            what I enjoy the most. From building websites to learning
+            programming and understanding AI, I'm trying a little bit
+            of everything.
+          </p>
+
+          <p>
+            I don't have everything figured out yet — and that's okay.
+            This portfolio is going to grow along with me.
+          </p>
+        </div>
+
+        <div class="info-card reveal">
+
+          <div class="info-row">
+            <span>Name</span>
+            <span>Adarsh</span>
+          </div>
+
+          <div class="info-row">
+            <span>Education</span>
+            <span>1st Year College</span>
+          </div>
+
+          <div class="info-row">
+            <span>Status</span>
+            <span>Learning 🚀</span>
+          </div>
+
+          <div class="info-row">
+            <span>Focus</span>
+            <span>Exploring Tech</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SKILLS / EXPLORING -->
+
+    <section id="skills">
+      <div class="section-title reveal">
+        <span>02 — Currently Exploring</span>
+        <h2>Things I'm learning.</h2>
+        <p>
+          These are areas I'm currently exploring. This list will keep
+          changing as I discover what I enjoy.
+        </p>
+      </div>
+
+      <div class="skills">
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">🌐</div>
+          <h3>Web Development</h3>
+          <p>
+            Learning HTML, CSS and JavaScript while building my first
+            websites.
+          </p>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">🐍</div>
+          <h3>Programming</h3>
+          <p>
+            Exploring programming fundamentals, problem solving and
+            languages like Python.
+          </p>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">🤖</div>
+          <h3>Artificial Intelligence</h3>
+          <p>
+            Learning what AI is, how it works and experimenting with
+            modern AI tools.
+          </p>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">⚡</div>
+          <h3>Building</h3>
+          <p>
+            Turning small ideas into actual projects and learning by
+            doing.
+          </p>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">🔧</div>
+          <h3>Git & GitHub</h3>
+          <p>
+            Learning how developers manage code and collaborate on
+            projects.
+          </p>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">🧠</div>
+          <h3>Problem Solving</h3>
+          <p>
+            Improving logical thinking through coding challenges and
+            experimentation.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+      <div class="section-title reveal">
+        <span>03 — Projects</span>
+        <h2>My building journey.</h2>
+        <p>
+          Small projects are where I'm going to learn the most.
+        </p>
+      </div>
+
+      <div class="projects">
+
+        <div class="project reveal">
+          <div class="project-number">PROJECT 01</div>
+
+          <h3>My Portfolio</h3>
+
+          <p>
+            The website you're looking at right now. Built to introduce
+            myself and document my journey into tech.
+          </p>
+
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+
+
+        <div class="project reveal">
+          <div class="project-number">PROJECT 02</div>
+
+          <h3>Coming Soon</h3>
+
+          <p>
+            I'm currently working on my next project. Check back soon
+            to see what I build.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Learning</span>
+            <span class="tag">Building</span>
+          </div>
+        </div>
+
+
+        <div class="project reveal">
+          <div class="project-number">PROJECT 03</div>
+
+          <h3>Future Idea</h3>
+
+          <p>
+            An idea waiting to become a project. One experiment at a
+            time.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Ideas</span>
+            <span class="tag">Coming Soon</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- JOURNEY -->
+
+    <section id="journey">
+
+      <div class="section-title reveal">
+        <span>04 — My Journey</span>
+        <h2>Where I'm starting.</h2>
+        <p>
+          A small timeline of my journey so far.
+        </p>
+      </div>
+
+      <div class="journey">
+
+        <div class="timeline-item reveal">
+          <small>2026 · START</small>
+          <h3>Started College</h3>
+          <p>
+            Began my first year of college and started exploring
+            different areas of technology.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <small>NOW</small>
+          <h3>Exploring Tech</h3>
+          <p>
+            Learning programming, web development, GitHub, AI and
+            experimenting with different technologies.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <small>NEXT</small>
+          <h3>Build More</h3>
+          <p>
+            Build real projects, contribute to open source and discover
+            which areas of technology I want to dive deeper into.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+      <div class="contact-box reveal">
+
+        <h2>Let's connect.</h2>
+
+        <p>
+          I'm always open to meeting other students, developers and
+          people interested in technology.
+        </p>
+
+        <div class="socials">
+
+          <!-- CHANGE THESE LINKS -->
+
+          <a
+            href="https://github.com/"
+            target="_blank"
+            class="btn btn-secondary"
+          >
+            GitHub
+          </a>
+
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            class="btn btn-secondary"
+          >
+            LinkedIn
+          </a>
+
+          <a
+            href="mailto:your@email.com"
+            class="btn btn-primary"
+          >
+            Email Me
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+    <span>© 2026 Adarsh</span>
+    <span>Built while learning 🚀</span>
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+  </script>
+
+</body>
+</html>
